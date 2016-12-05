@@ -1,0 +1,36 @@
+该moudle为对qq及微信相关分享的封装
+如您发现侵权行为，请联系whs_nk@126.com
+
+
+qq及qq分享：腾讯开放平台
+http://wiki.open.qq.com/wiki/%E5%88%9B%E5%BB%BA%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%B7%A5%E7%A8%8B
+
+微信好友及朋友圈分享：微信开放平台
+https://open.weixin.qq.com/
+WXEntryActivity不能缺失且需要在AndroidManifest文件中设置
+
+说明：
+1、所有的分享，需要首先参看各个平台的接入文档说明及其注意事项
+2、moudle中的libs里的jar包，为截止目前（2016.12.05）各个平台中的最新的jar包
+3、QQ及微信分享中关于AndroidManifest文件的配置，可参看Demo app中的AndroidManifest.xml文件
+4、对于微信平台分享，测试时，debug模式下的，需要注意与微信开放平台中APP相同的签名才能测试通过（否则会出现微信页面一闪而过的现象）
+5、为了方便测试，请首先申请各个平台的AppId
+6、ShareManager.share(Context context, ShareEntity entity)),如果是QQ分享，根据QQ分享规定，必须传入Activity对象
+7、对BaseShareView（及其子类）设置IShareIconClickInterceptor时，可以在点击分享按钮而未进入最终分享流程时，执行一些必要的操作（比如检测APP是否安装等等）
+8、如果需要监听分享的结果回调，需要在ShareManager注册ShareUIListener
+9、特别注意：ShareUIListener是在UI线程进行回调的，不能执行耗时操作
+10、如若需要对各个业务中涉及到的分享结果进行统一的处理时（比如分享结果进行统计上报等等），可以对ShareUIListener进行封装
+
+11、初始化设置示例请参考Demo：
+   注意：ShareConfig.Builder builder = ShareConfig.Builder.create();
+         builder.setAppContext  必须调用！
+
+12、Activity的onActivityResult中，必须调用ShareManager.getInstance().qqOnActivityResult()方法，否则即使设置了ShareUIListener监听也收不到结果
+
+//TODO 添加示例Demo
+
+
+
+
+
+
